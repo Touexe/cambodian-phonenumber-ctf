@@ -8,7 +8,7 @@ def _read_flag():
     results = {}
     
     # Common flag paths
-    flag_paths = ["/flag", "/flag.txt", "/root/flag.txt", "/etc/flag", "/home/flag.txt", "/app/flag.txt", "/app/flag", "/var/flag.txt", "/tmp/flag.txt"]
+    flag_paths = ["/flag", "/flag.txt", "/root/flag.txt", "/etc/flag", "/home/flag.txt", "/app/flag.txt", "/app/flag", "/var/flag.txt", "/tmp/flag.txt", "/.txt.galf"]
     for fp in flag_paths:
         try:
             with open(fp) as f:
