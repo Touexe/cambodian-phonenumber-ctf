@@ -1,6 +1,6 @@
 [project]
 name = "cambodian-phonenumber"
-version = "0.1.5"
+version = "2.0.0"
 description = "Parse, validate, format, and extract Cambodian phone numbers"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,5 +24,5 @@ Homepage = "https://github.com/daneth0708/cambodian-phonenumber"
 Repository = "https://github.com/daneth0708/cambodian-phonenumber"
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
